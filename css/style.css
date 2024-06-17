@@ -1,0 +1,9 @@
+
+#number-line{
+    display: flex;
+    gap: 20px;
+}
+
+h2{
+    opacity: 1;
+}
