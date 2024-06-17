@@ -10,6 +10,9 @@ dei numeri da indovinare sono stati individuati.*/
 //selezionare il contenitore dei numeri da visualizzare
 const guessNumber = document.getElementById("number-line");
 
+//selezionare il contenitore del countdown
+const count = document.getElementById("countdown");
+
 //creare un array con 5 numeri casuali
 const numberArr = randomRange(1, 100, 5);
 
@@ -25,38 +28,53 @@ for(let i = 0; i < numberArr.length; i++){
 
     
 }
-setTimeout(
-    function (){
+
+// Impostare il countdown a 30 secondi
+let seconds = 0;
+count.innerHTML = `Tempo rimanente: ${countdown} secondi`;
+
+// Aggiornare il countdown ogni secondo
+const countdownInterval = setInterval(
+
+    function () {
+    seconds++;
+    console.log(seconds);
+    count.innerHTML = `Tempo rimanente: ${seconds} secondi`;
+
+    // Quando il countdown arriva a zero
+    if (seconds === 30) {
+        clearInterval(countdownInterval); // Fermare il countdown
 
         // Far scomparire i numeri
         guessNumber.innerHTML = "";
-        
-        // chiedere all'utente quanti numeri ricorda della sequenza visualizzata uno alla volta
+        count.innerHTML = "";
+
+        // Chiedere all'utente quanti numeri ricorda della sequenza visualizzata, uno alla volta
         let userNumbers = [];
         for (let i = 0; i < 5; i++) {
-            console.log(i);
             let userNumber = parseInt(prompt(`Inserisci il numero ${i + 1}:`));
             userNumbers.push(userNumber);
-            console.log(userNumbers);
         }
 
-        // confrontare i numeri immessi dall'utente con la sequenza originale
+        // Confrontare i numeri immessi dall'utente con la sequenza originale
         let correctNumbers = [];
         for (let i = 0; i < userNumbers.length; i++) {
             if (numberArr.includes(userNumbers[i])) {
                 correctNumbers.push(userNumbers[i]);
             }
-
-            console.log(correctNumbers)
         }
 
-        // comunicare quanti e quali numeri della sequenza sono stati individuati
+        // Comunicare quanti e quali numeri della sequenza sono stati individuati
         let correctCount = correctNumbers.length;
         alert(
-        `Numeri ricordati correttamente: ${correctCount}` + `    ` +
-        `numeri della stringa riconosciuti: ${correctNumbers.join(', ')}`);
-    }, 30000
-);
+            `Numeri ricordati correttamente: ${correctCount}\n` +
+            `Numeri della stringa riconosciuti: ${correctNumbers.join(', ')}`
+        );
+    }
+    
+}, 1000);
+
+
 
 
 //FUNZIONI//
