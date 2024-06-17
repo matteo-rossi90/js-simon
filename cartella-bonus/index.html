@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- link css -->
+     <link rel="stylesheet" href="css/style.css">
+    <title>Indovina il numero - bonus</title>
+</head>
+<body>
+
+    <div id="container">
+
+        <h1 id="title">ALLENA LA MEMORIA</h1>
+
+        <div id="box-container">
+
+            <p>
+                Memorizza la sequenza di numeri entro 30 secondi e inserisci i numeri che ricordi
+                nella barra al centro premendo il pulsante "Inserisci". Il sistema rielabora le informazioni
+                e ti dirà se hai indovinato.
+            </p>
+
+            <form action="#">
+                
+                <!-- area dove compariranno i messaggi  che comunicano rispettivamente 
+                quanti numeri sono da inserire e il conteggio del tempo-->
+                <div id="current-number"></div><h3 id="count"></h3>
+                
+                <!-- barra in cui l'utente inserirà i numeri -->
+                <input type="text" id="input-text" disabled>
+                
+                <!-- pulsante che permetterà all'utente di inserire i 5 numeri
+                e confrontarli con quelli della sequenza -->
+                <button id="btn-send" disabled>Inserisci</button>
+            
+            </form>
+
+            <!-- testo che comunica all'utente quanti numeri ha indovinato -->
+            <div id="text-message"></div>
+            
+            <!-- sequenza di numeri che scompare dopo 30 secondi -->
+            <div id="number-line"></div>
+
+
+        </div>
+
+    </div> 
+
+    <!-- link js -->
+     <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
