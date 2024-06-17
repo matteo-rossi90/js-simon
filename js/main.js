@@ -10,8 +10,8 @@ dei numeri da indovinare sono stati individuati.*/
 //selezionare il contenitore dei numeri da visualizzare
 const guessNumber = document.getElementById("number-line");
 
-//selezionare il contenitore del countdown
-const count = document.getElementById("countdown");
+//selezionare il contenitore del conteggio
+const count = document.getElementById("count");
 
 //creare un array con 5 numeri casuali
 const numberArr = randomRange(1, 100, 5);
@@ -31,22 +31,24 @@ for(let i = 0; i < numberArr.length; i++){
 
 // Impostare il countdown a 30 secondi
 let seconds = 0;
-count.innerHTML = `Tempo rimanente: ${countdown} secondi`;
+count.innerHTML = `Tempo rimanente: ${seconds} secondi`;
 
-// Aggiornare il countdown ogni secondo
-const countdownInterval = setInterval(
+// Aggiornare il timing ogni secondo
+const countInterval = setInterval(
 
     function () {
-    seconds++;
-    console.log(seconds);
-    count.innerHTML = `Tempo rimanente: ${seconds} secondi`;
+        
+        //incrementare i secondi del timing
+        seconds++;
+        console.log(seconds);
+        count.innerHTML = `Tempo rimanente: ${seconds} secondi`;
 
-    // Quando il countdown arriva a zero
-    if (seconds === 30) {
-        clearInterval(countdownInterval); // Fermare il countdown
+        // Quando il countdown arriva a 30 secondi
+        if (seconds === 30) {
+        clearInterval(countInterval); // Fermare il countdown
 
         // Far scomparire i numeri
-        guessNumber.innerHTML = "";
+        guessNumber.style.display = "none";
         count.innerHTML = "";
 
         // Chiedere all'utente quanti numeri ricorda della sequenza visualizzata, uno alla volta
@@ -54,7 +56,7 @@ const countdownInterval = setInterval(
         for (let i = 0; i < 5; i++) {
             let userNumber = parseInt(prompt(`Inserisci il numero ${i + 1}:`));
             userNumbers.push(userNumber);
-        }
+        };
 
         // Confrontare i numeri immessi dall'utente con la sequenza originale
         let correctNumbers = [];
@@ -70,6 +72,7 @@ const countdownInterval = setInterval(
             `Numeri ricordati correttamente: ${correctCount}\n` +
             `Numeri della stringa riconosciuti: ${correctNumbers.join(', ')}`
         );
+
     }
     
 }, 1000);
